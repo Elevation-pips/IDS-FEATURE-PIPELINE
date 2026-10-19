@@ -1,0 +1,8 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+data/*.pcap
+data/*.pcapng
+*.joblib
+.ipynb_checkpoints/
