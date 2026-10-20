@@ -6,3 +6,7 @@ data/*.pcap
 data/*.pcapng
 *.joblib
 .ipynb_checkpoints/
+.venv/
+venv/
+*.pcapng
+*.csv
