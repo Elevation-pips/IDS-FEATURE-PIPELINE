@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import StandardScaler
 
-df = pd.read_csv("packet_features.csv").sort_values("time")
+df = pd.read_csv("data/packet_features.csv").sort_values("time")
 
 # ICMP/other packets have no ports; groupby would silently drop NaN keys
 df["dst_port"] = df["dst_port"].fillna(-1)
@@ -39,7 +39,7 @@ flows["pkts_per_sec"] = flows["packet_count"] / flows["duration"].clip(lower=1e-
 flows["bytes_per_sec"] = flows["total_bytes"] / flows["duration"].clip(lower=1e-3)
 flows = flows.drop(columns=["start", "end"]).fillna(0)
 
-flows.to_csv("flow_features.csv", index=False)
+flows.to_csv("data/flow_features.csv", index=False)
 print("Flows:", flows.shape)
 print(flows.describe().T[["mean", "max"]])
 
@@ -60,4 +60,4 @@ print(flows.sort_values("score").head(10)[
     ["src_ip", "dst_ip", "dst_port", "protocol", "packet_count", "total_bytes", "score"]
 ])
 
-flows.to_csv("flow_features_scored.csv", index=False)
+flows.to_csv("data/flow_features_scored.csv", index=False)

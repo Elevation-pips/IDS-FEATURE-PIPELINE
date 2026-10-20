@@ -1,7 +1,7 @@
 from scapy.all import rdpcap, IP, TCP, UDP
 import pandas as pd
 
-packets = rdpcap("sample.pcapng")
+packets = rdpcap("data/sample.pcapng")
 rows = []
 
 for pkt in packets:
@@ -28,7 +28,7 @@ for pkt in packets:
     rows.append(row)
 
 df = pd.DataFrame(rows)
-df.to_csv("packet_features.csv", index=False)
+df.to_csv("data/packet_features.csv", index=False)
 print(df.shape)
 print(df.head())
 print(df["protocol"].value_counts())
