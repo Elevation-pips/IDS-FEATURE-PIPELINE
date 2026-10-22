@@ -32,10 +32,9 @@ Running record of decisions, results and limitations. The README is written from
 - Domain shift: UNSW-NB15 was generated in a 2015 lab network; own capture is a modern home network over the real internet. The model flags almost all own flows as attacks.
 - UNSW-NB15 class balance (about 55% attack) is far from real networks.
 - In UNSW, tiny flows are overwhelmingly attacks, so DNS-like own flows are misclassified.
-- Possible capture artifact: maximum packet length of 44,858 bytes in own capture suggests NIC offload coalescing (unverified; length check pending).
+- - Capture artifact: 1,853 of 84,333 packets (2.2%) exceed 1,514 bytes (max 44,858), consistent with NIC offload coalescing; too few to explain the byte gap. Median and 75th-percentile packet length are both 1,292 bytes, consistent with QUIC datagrams (not yet verified with a Wireshark `quic` filter), so the larger packet sizes are mostly real traffic differences.
 - Capture only on networks you own or have permission to monitor.
 
 ## Next steps
-- Run the packet-length check on own capture.
 - Generate labeled attack traffic in a VM lab (planned) to evaluate detection on real captures.
 - Evaluate on matched feature definitions or flows produced by the same tool as the training data.
